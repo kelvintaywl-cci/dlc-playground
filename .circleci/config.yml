@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:2023.10.1
+      docker_layer_caching: true
+    resource_class: medium
+    steps:
+      - checkout
+      - run: cat Dockerfile
+      - run:
+          name: docker build
+          command: docker build --tag dlc-play .
+      - run:
+          name: inspect
+          command: |
+            docker run --rm dlc-play ls -lah .
+            docker run --rm dlc-play find . -name "Dockerfile" 
