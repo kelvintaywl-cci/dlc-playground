@@ -6,6 +6,7 @@ jobs:
       - image: naoyer/sample-git:latest
       # - image: cimg/base:current
     resource_class: medium
+    parallelism: 31
     steps:
       - run: git --version
       - run: ssh -V
